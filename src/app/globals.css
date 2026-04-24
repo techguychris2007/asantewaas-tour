@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:opsz,wght@9..40,300..700&family=Caveat:wght@400;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #f5f0e6;
+  --bone: #ebe3d3;
+  --clay: #b0462a;
+  --forest: #1f4a2e;
+  --gold: #d4a24c;
+  --ink: #1a1612;
+}
+
+html,
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "DM Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Fraunces", serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+/* Subtle paper grain overlay */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 text-sm font-medium tracking-wide transition;
+  }
+  .btn-clay {
+    @apply btn bg-clay text-cream hover:bg-clay/90;
+  }
+  .btn-forest {
+    @apply btn bg-forest text-cream hover:bg-forest/90;
+  }
+  .btn-outline {
+    @apply btn border border-ink/30 text-ink hover:bg-ink hover:text-cream;
+  }
+  .input {
+    @apply w-full rounded-none border-b-2 border-ink/30 bg-transparent px-0 py-2 text-ink outline-none transition focus:border-clay;
+  }
+  .label {
+    @apply mb-1 block font-sans text-xs uppercase tracking-[0.15em] text-muted;
+  }
+  .eyebrow {
+    @apply font-sans text-xs uppercase tracking-[0.25em] text-clay;
+  }
+  .hand {
+    @apply font-hand text-2xl text-forest;
+  }
+}
+
+/* Staggered reveal animation */
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  animation: reveal 0.8s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+.reveal-1 { animation-delay: 0.1s; }
+.reveal-2 { animation-delay: 0.25s; }
+.reveal-3 { animation-delay: 0.4s; }
+.reveal-4 { animation-delay: 0.55s; }
+
+/* Marquee for continuous destination strip */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee {
+  animation: marquee 40s linear infinite;
+}
