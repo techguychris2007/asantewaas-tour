@@ -6,11 +6,13 @@ export const metadata = {
   title: "Book a tour — Asantewaa's Tour",
 };
 
-export default function BookPage({
+export default async function BookPage({
   searchParams,
 }: {
-  searchParams: { tour?: string };
+  searchParams: Promise<{ tour?: string }>;
 }) {
+  const { tour } = await searchParams;
+
   return (
     <main className="mx-auto max-w-4xl px-6 py-20">
       <div className="mb-12 max-w-2xl">
@@ -25,7 +27,7 @@ export default function BookPage({
         </p>
       </div>
 
-      <BookingForm tours={tours} initialTour={searchParams.tour} />
+      <BookingForm tours={tours} initialTour={tour} />
     </main>
   );
 }
