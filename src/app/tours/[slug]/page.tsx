@@ -8,8 +8,9 @@ export function generateStaticParams() {
   return tours.map((t) => ({ slug: t.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const tour = getTour(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const tour = getTour(slug);
   if (!tour) return {};
   return {
     title: `${tour.title} — Asantewaa's Tour`,
@@ -17,8 +18,9 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   };
 }
 
-export default function TourDetailPage({ params }: { params: { slug: string } }) {
-  const tour = getTour(params.slug);
+export default async function TourDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const tour = getTour(slug);
   if (!tour) notFound();
 
   return (
