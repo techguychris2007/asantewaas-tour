@@ -12,26 +12,22 @@ export function Header() {
           </span>
           <span className="flex flex-col leading-none">
             <span className="font-display text-lg font-semibold">Asantewaa's Tour</span>
-            <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-muted">
-              Explore the golden legacy
-            </span>
+            <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-muted">Explore the golden legacy</span>
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 text-sm md:flex">
+        <nav className="hidden items-center gap-6 text-sm md:flex">
           <Link href="/tours" className="hover:text-clay">Tours</Link>
+          <Link href="/videos" className="hover:text-clay">Watch</Link>
           <Link href="/gallery" className="hover:text-clay">Gallery</Link>
+          <Link href="/blog" className="hover:text-clay">Stories</Link>
+          <Link href="/faq" className="hover:text-clay">FAQ</Link>
+          <Link href="/reviews" className="hover:text-clay">Reviews</Link>
           <Link href="/about" className="hover:text-clay">About</Link>
-          <Link href="/#contact" className="hover:text-clay">Contact</Link>
-          <Link href="/book" className="btn-clay text-xs">
-            Book a tour
-          </Link>
+          <Link href="/book" className="btn-clay text-xs">Book a tour</Link>
         </nav>
 
-        {/* mobile: simple nav */}
-        <Link href="/book" className="btn-clay text-xs md:hidden">
-          Book
-        </Link>
+        <Link href="/book" className="btn-clay text-xs md:hidden">Book</Link>
       </div>
     </header>
   );

@@ -1,47 +1,88 @@
 // src/components/booking-form.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Tour } from "@/lib/tours";
 
-export function BookingForm({
-  tours,
-  initialTour,
-}: {
-  tours: Tour[];
-  initialTour?: string;
-}) {
+// ✏️ Replace with your hCaptcha site key from https://dashboard.hcaptcha.com
+const HCAPTCHA_SITE_KEY = "10000000-ffff-ffff-ffff-000000000001"; // test key — replace before going live
+
+declare global {
+  interface Window { hcaptcha: any; }
+}
+
+export function BookingForm({ tours, initialTour }: { tours: Tour[]; initialTour?: string }) {
   const [state, setState] = useState<
     | { kind: "idle" }
     | { kind: "pending" }
     | { kind: "success" }
     | { kind: "error"; message: string }
   >({ kind: "idle" });
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [paymentMode, setPaymentMode] = useState(false);
+
+  useEffect(() => {
+    // Load hCaptcha script
+    if (!document.getElementById("hcaptcha-script")) {
+      const s = document.createElement("script");
+      s.id = "hcaptcha-script";
+      s.src = "https://js.hcaptcha.com/1/api.js";
+      s.async = true;
+      document.head.appendChild(s);
+    }
+  }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!captchaToken) {
+      setState({ kind: "error", message: "Please complete the CAPTCHA before submitting." });
+      return;
+    }
     setState({ kind: "pending" });
     const fd = new FormData(e.currentTarget);
     const payload = {
-      full_name: fd.get("full_name"),
-      email: fd.get("email"),
+      full_name: fd.get("full_name") as string,
+      email: fd.get("email") as string,
       phone: fd.get("phone") || undefined,
       country: fd.get("country") || undefined,
-      tour_slug: fd.get("tour_slug"),
+      tour_slug: fd.get("tour_slug") as string,
       preferred_date: fd.get("preferred_date") || undefined,
       group_size: Number(fd.get("group_size")),
       message: fd.get("message") || undefined,
+      captcha_token: captchaToken,
     };
+
     const res = await fetch("/api/bookings", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(payload),
     });
+
     if (res.ok) {
+      if (paymentMode) {
+        // Initialize Paystack payment
+        const payRes = await fetch("/api/payment", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            email: payload.email,
+            full_name: payload.full_name,
+            amount_usd: 50, // deposit amount
+            tour_title: tours.find(t => t.slug === payload.tour_slug)?.title ?? "Tour",
+          }),
+        });
+        if (payRes.ok) {
+          const { authorization_url } = await payRes.json();
+          window.location.href = authorization_url;
+          return;
+        }
+      }
       setState({ kind: "success" });
     } else {
       const d = await res.json().catch(() => ({}));
       setState({ kind: "error", message: d.error ?? "Something went wrong." });
+      window.hcaptcha?.reset();
+      setCaptchaToken("");
     }
   }
 
@@ -49,12 +90,10 @@ export function BookingForm({
     return (
       <div className="rounded-sm bg-forest p-12 text-center text-cream">
         <p className="font-hand text-4xl text-gold">Akwaaba! 🌿</p>
-        <h2 className="mt-4 font-display text-3xl">
-          Your booking request arrived.
-        </h2>
+        <h2 className="mt-4 font-display text-3xl">Your booking request arrived.</h2>
         <p className="mt-4 text-cream/80">
-          I've got it. I'll be in touch within 24 hours with dates, a full
-          quote, and next steps. Check your email (and spam folder, just in case).
+          I'll be in touch within 24 hours with dates, a full quote, and next steps.
+          Check your email (and spam folder, just in case).
         </p>
       </div>
     );
@@ -64,17 +103,10 @@ export function BookingForm({
     <form onSubmit={onSubmit} className="grid gap-6 md:grid-cols-2">
       <div className="md:col-span-2">
         <label className="label">Which tour are you interested in?</label>
-        <select
-          name="tour_slug"
-          required
-          defaultValue={initialTour ?? ""}
-          className="input appearance-none cursor-pointer"
-        >
+        <select name="tour_slug" required defaultValue={initialTour ?? ""} className="input appearance-none cursor-pointer">
           <option value="" disabled>Pick a tour…</option>
           {tours.map((t) => (
-            <option key={t.slug} value={t.slug}>
-              {t.title} ({t.duration})
-            </option>
+            <option key={t.slug} value={t.slug}>{t.title} ({t.duration})</option>
           ))}
           <option value="custom">I want something custom</option>
         </select>
@@ -106,12 +138,38 @@ export function BookingForm({
       </div>
       <div className="md:col-span-2">
         <label className="label">Anything else I should know?</label>
-        <textarea
-          name="message"
-          rows={5}
-          placeholder="Accessibility needs, dietary preferences, things you specifically want to see, dealbreakers…"
-          className="input resize-none"
+        <textarea name="message" rows={4} placeholder="Accessibility needs, dietary preferences, things you want to see…" className="input resize-none" />
+      </div>
+
+      {/* hCaptcha widget */}
+      <div className="md:col-span-2">
+        <div
+          className="h-captcha"
+          data-sitekey={HCAPTCHA_SITE_KEY}
+          data-callback={(token: string) => setCaptchaToken(token)}
+          data-expired-callback={() => setCaptchaToken("")}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.querySelector('.h-captcha').setAttribute('data-callback','setCaptchaToken');
+            window.setCaptchaToken = function(t){ document.dispatchEvent(new CustomEvent('captcha',{detail:t})); }`,
+          }}
+        />
+      </div>
+
+      {/* Payment toggle */}
+      <div className="md:col-span-2 flex items-center gap-3 rounded-sm border border-ink/10 bg-bone p-4">
+        <input
+          type="checkbox"
+          id="pay-deposit"
+          checked={paymentMode}
+          onChange={e => setPaymentMode(e.target.checked)}
+          className="h-4 w-4 cursor-pointer accent-forest"
+        />
+        <label htmlFor="pay-deposit" className="cursor-pointer text-sm">
+          <span className="font-medium">Pay $50 deposit now</span>
+          <span className="ml-2 text-muted">— secure your spot (card, MoMo, bank transfer)</span>
+        </label>
       </div>
 
       {state.kind === "error" && (
@@ -119,15 +177,9 @@ export function BookingForm({
       )}
 
       <div className="md:col-span-2 mt-4 flex items-center justify-between gap-4">
-        <p className="text-xs text-muted">
-          By submitting, you agree to be contacted about your trip. No spam, ever.
-        </p>
-        <button
-          type="submit"
-          disabled={state.kind === "pending"}
-          className="btn-clay"
-        >
-          {state.kind === "pending" ? "Sending…" : "Send booking request"}
+        <p className="text-xs text-muted">By submitting, you agree to be contacted about your trip. No spam, ever.</p>
+        <button type="submit" disabled={state.kind === "pending"} className="btn-clay">
+          {state.kind === "pending" ? "Sending…" : paymentMode ? "Book & pay deposit →" : "Send booking request"}
         </button>
       </div>
     </form>
