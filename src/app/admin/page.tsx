@@ -5,14 +5,15 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
+export const runtime = "edge";
 
-function isAuthed(): boolean {
-  const c = cookies().get("admin_auth")?.value;
+async function isAuthed(): Promise<boolean> {
+  const c = (await cookies()).get("admin_auth")?.value;
   return Boolean(c && c === process.env.ADMIN_PASSWORD);
 }
 
 export default async function AdminPage() {
-  if (!isAuthed()) {
+  if (!(await isAuthed())) {
     return (
       <main className="mx-auto max-w-sm px-6 py-32">
         <h1 className="font-display text-4xl">Admin</h1>

@@ -14,13 +14,14 @@ export interface Tour {
   description: string;
   itinerary: { day: string; activity: string }[];
   includes: string[];
+  note?: string;
 }
 
 export const tours: Tour[] = [
   {
     slug: "heritage-cape-coast",
     title: "The Heritage Journey",
-    tagline: "Cape Coast Castle & the walk through history",
+    tagline: "Cape Coast Castle & the walk through history — return trip",
     duration: "3 days / 2 nights",
     groupSize: "2–15 people",
     priceFrom: "$450 per person",
@@ -37,18 +38,19 @@ export const tours: Tour[] = [
       "Private reflection time at the slave dungeons",
     ],
     description:
-      "This is the tour most of my diaspora guests come for. It's heavy, it's holy, and it's handled with care. We walk the same stones our ancestors walked. I'll be right there with you — not rushing, not narrating over your feelings, just holding space.",
+      "This is the tour most of my diaspora guests come for. It's heavy, it's holy, and it's handled with care. We walk the same stones our ancestors walked. I'll be right there with you — not rushing, not narrating over your feelings, just holding space. This is a full return trip — you travel with me and come back to Accra together.",
     itinerary: [
-      { day: "Day 1", activity: "Arrive Accra. Independence Square & Nkrumah Memorial in the afternoon. Welcome dinner." },
-      { day: "Day 2", activity: "Drive to Cape Coast. Guided castle tour, Door of No Return, group debrief, time alone." },
-      { day: "Day 3", activity: "Elmina Castle in the morning, Kakum canopy walk on the way back, return to Accra." },
+      { day: "Day 1", activity: "Depart Accra. Independence Square & Nkrumah Memorial in the afternoon. Welcome dinner." },
+      { day: "Day 2", activity: "Cape Coast Castle guided tour, Door of No Return, group debrief, time alone. Elmina Castle." },
+      { day: "Day 3", activity: "Kakum canopy walk in the morning, then return journey to Accra together." },
     ],
     includes: [
-      "All transport (private AC vehicle)",
+      "All transport (private AC vehicle) — return trip to Accra included",
       "All castle/park entry fees",
       "Breakfasts and welcome dinner",
       "Asantewaa as your guide the entire time",
     ],
+    note: "Itineraries are subject to change to suit your preferences — and prices will adjust accordingly. Whatever you want, I'll send you a custom plan with the price.",
   },
   {
     slug: "nature-mountains",
@@ -70,12 +72,14 @@ export const tours: Tour[] = [
       "Boti Falls & Umbrella Rock hike",
       "Mount Afadja (or Afadjato) — Ghana's tallest mountain",
       "Wli Waterfalls (the highest in West Africa)",
+      "Asenema Waterfall — a hidden gem in the Volta Region",
+      "Safari Valley Resort — wildlife and nature in the Eastern Region",
     ],
     description:
-      "For folks who want to see that Ghana is lush, wild, and breathtaking. We'll hike, we'll swim under a waterfall, and we'll stand at the top of a mountain looking at three countries at once. Bring good shoes.",
+      "For folks who want to see that Ghana is lush, wild, and breathtaking. We'll hike, we'll swim under a waterfall, and we'll stand at the top of a mountain looking at three countries at once. We've added Asenema Waterfall and Safari Valley to this tour — two incredible spots that most visitors never find. Bring good shoes.",
     itinerary: [
-      { day: "Day 1", activity: "Accra pickup. Afternoon at Aburi Gardens and craft village." },
-      { day: "Day 2", activity: "Drive to Volta Region. Hike to Wli Waterfalls." },
+      { day: "Day 1", activity: "Accra pickup. Afternoon at Aburi Gardens and craft village. Safari Valley stop en route." },
+      { day: "Day 2", activity: "Drive to Volta Region. Hike to Wli Waterfalls. Visit Asenema Waterfall." },
       { day: "Day 3", activity: "Mount Afadja climb. Sunset from the summit." },
       { day: "Day 4", activity: "Shai Hills reserve (baboons and zebras), return to Accra." },
     ],
@@ -85,6 +89,7 @@ export const tours: Tour[] = [
       "Breakfasts and lunches",
       "Accommodation in small eco-lodges",
     ],
+    note: "Itineraries are subject to change to suit your preferences — and prices will adjust accordingly. Whatever you want, I'll send you a custom plan with the price.",
   },
   {
     slug: "accra-immersion",
@@ -119,6 +124,7 @@ export const tours: Tour[] = [
       "All food on the street food walk",
       "Local SIM card on arrival",
     ],
+    note: "Itineraries are subject to change to suit your preferences — and prices will adjust accordingly. Whatever you want, I'll send you a custom plan with the price.",
   },
   {
     slug: "full-ghana-experience",
@@ -126,7 +132,7 @@ export const tours: Tour[] = [
     tagline: "Ten days, one country, every flavour",
     duration: "10 days / 9 nights",
     groupSize: "4–20 people",
-    priceFrom: "$1,850 per person",
+    priceFrom: "$1,900 per person",
     heroImage: "/images/group-flag.jpg",
     gallery: [
       "/images/group-flag.jpg",
@@ -146,9 +152,9 @@ export const tours: Tour[] = [
     itinerary: [
       { day: "Days 1–2", activity: "Accra: markets, food, Independence Square, drumming." },
       { day: "Days 3–4", activity: "Cape Coast & Elmina: castles, Kakum, Door of No Return." },
-      { day: "Days 5–6", activity: "Volta Region: Wli Falls, Mount Afadja, Boti Falls." },
+      { day: "Days 5–6", activity: "Volta Region: Wli Falls, Asenema Waterfall, Mount Afadja, Boti Falls." },
       { day: "Days 7–8", activity: "Kumasi: Manhyia Palace, Kejetia Market, kente village." },
-      { day: "Days 9–10", activity: "Aburi Gardens, optional naming ceremony, farewell dinner." },
+      { day: "Days 9–10", activity: "Aburi Gardens, Safari Valley, optional naming ceremony, farewell dinner." },
     ],
     includes: [
       "All transport (private AC vehicle)",
@@ -157,6 +163,7 @@ export const tours: Tour[] = [
       "All tour fees, guide fees, park fees",
       "Asantewaa as your personal guide the full ten days",
     ],
+    note: "Itineraries are subject to change to suit your preferences — and prices will adjust accordingly. Whatever you want, I'll send you a custom plan with the price.",
   },
 ];
 

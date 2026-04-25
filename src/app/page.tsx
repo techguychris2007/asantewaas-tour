@@ -284,6 +284,56 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* =================== MORE EXPERIENCES =================== */}
+      <section className="py-24 bg-bone">
+        <div className="mx-auto max-w-7xl px-6">
+          <p className="eyebrow">More with Asantewaa</p>
+          <h2 className="mt-3 font-display text-4xl md:text-5xl">
+            Beyond the <span className="italic text-clay">tour</span>.
+          </h2>
+          <p className="mt-4 max-w-2xl text-muted">
+            Not every experience fits a package. Here's what else I offer — reach out and we'll build something just for you.
+          </p>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 md:grid-cols-4">
+            {[
+              {
+                icon: "🌅",
+                title: "Day Tours",
+                desc: "Short on time? A single-day tour is available with a fee. Tell me what you want to see — I'll make it happen.",
+              },
+              {
+                icon: "🎨",
+                title: "Batik Workshop",
+                desc: "A hands-on batik fabric dyeing session for groups. Create something beautiful to take home.",
+              },
+              {
+                icon: "🍳",
+                title: "Cooking Class",
+                desc: "Learn to cook Ghanaian dishes with me. Available for individuals. Jollof secrets included.",
+              },
+              {
+                icon: "🏡",
+                title: "Village Experience",
+                desc: "Step into everyday Ghanaian life. A grounding, joyful visit to a real community — not a performance.",
+              },
+            ].map((item) => (
+              <div key={item.title} className="rounded-sm bg-cream p-6 shadow-sm">
+                <div className="mb-3 text-4xl">{item.icon}</div>
+                <h3 className="font-display text-xl">{item.title}</h3>
+                <p className="mt-2 text-sm text-muted leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 rounded-sm border border-clay/30 bg-clay/10 px-6 py-5">
+            <p className="text-sm text-ink leading-relaxed">
+              <span className="font-semibold">Note:</span> All itineraries are subject to change to suit your preferences — and prices will adjust accordingly. Whatever you want, I'll send you a personalised plan with the price. Just ask.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* =================== CONTACT =================== */}
       <section id="contact" className="py-24">
         <div className="mx-auto max-w-5xl px-6">

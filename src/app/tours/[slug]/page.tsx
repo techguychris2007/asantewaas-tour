@@ -74,6 +74,13 @@ export default async function TourDetailPage({ params }: { params: Promise<{ slu
               ))}
             </div>
 
+            {/* Itinerary flexibility note */}
+            {tour.note && (
+              <div className="mt-6 rounded-sm border border-clay/30 bg-clay/10 px-5 py-4 text-sm text-ink leading-relaxed">
+                <span className="font-semibold">Good to know: </span>{tour.note}
+              </div>
+            )}
+
             <h3 className="mt-12 font-display text-2xl">What's included</h3>
             <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
               {tour.includes.map((inc) => (
