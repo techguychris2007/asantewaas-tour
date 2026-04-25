@@ -1,7 +1,3 @@
-// src/app/api/resend/route.ts
-// Called internally by /api/bookings after a successful booking insert.
-// Set RESEND_API_KEY and RESEND_TO_EMAIL in your Vercel environment variables.
-
 export async function sendBookingNotification(data: {
   full_name: string;
   email: string;
@@ -13,9 +9,9 @@ export async function sendBookingNotification(data: {
   message?: string;
 }) {
   const apiKey = process.env.RESEND_API_KEY;
-  const toEmail = process.env.RESEND_TO_EMAIL; // your own email address
+  const toEmail = process.env.RESEND_TO_EMAIL;
 
-  if (!apiKey || !toEmail) return; // silently skip if not configured yet
+  if (!apiKey || !toEmail) return;
 
   await fetch("https://api.resend.com/emails", {
     method: "POST",
