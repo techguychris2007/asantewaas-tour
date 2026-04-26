@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { WhatsAppBubble } from "@/components/whatsapp-bubble";
+import { SeasonBanner } from "@/components/season-banner";
 
 export const metadata: Metadata = {
   title: "Asantewaa's Tour — Come see Ghana with me",
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="grain">
+        <SeasonBanner />
         <Header />
         {children}
         <Footer />

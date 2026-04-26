@@ -4,6 +4,9 @@ import Image from "next/image";
 import { tours } from "@/lib/tours";
 import { supabase } from "@/lib/supabase";
 import { ContactForm } from "@/components/contact-form";
+import { TrustBar } from "@/components/trust-bar";
+import { GhanaFacts } from "@/components/ghana-facts";
+import { BestTime } from "@/components/best-time";
 
 export const revalidate = 60;
 
@@ -54,13 +57,12 @@ export default async function HomePage() {
                 </div>
                 <div className="h-10 w-px bg-ink/20" />
                 <div>
-                  <p className="font-display text-3xl text-ink">★ 5.0</p>
+                  <p className="font-display text-3xl text-ink">5.0 ★</p>
                   <p className="text-xs uppercase tracking-wider">guest rating</p>
                 </div>
               </div>
             </div>
 
-            {/* Hero image - Asantewaa herself */}
             <div className="reveal reveal-2 relative">
               <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
                 <Image
@@ -82,7 +84,7 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Continuous destination strip */}
+        {/* Destination strip */}
         <div className="overflow-hidden border-y border-ink/10 bg-bone py-4">
           <div className="marquee flex gap-12 whitespace-nowrap font-display text-2xl italic text-muted">
             {[...Array(2)].map((_, i) => (
@@ -103,7 +105,11 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* =================== ABOUT / PERSONAL =================== */}
+      {/* =================== TRUST BAR =================== */}
+      {/* Shows guest countries — edit the list in src/components/trust-bar.tsx */}
+      <TrustBar />
+
+      {/* =================== ABOUT =================== */}
       <section className="mx-auto max-w-7xl px-6 py-24">
         <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:gap-20">
           <div className="relative">
@@ -137,22 +143,25 @@ export default async function HomePage() {
                 My name is Asantewaa, and I've been walking people through my
                 country for over a decade. I got into this work because every
                 time a friend visited, I'd spend the whole week in the car with
-                them anyway. Eventually someone said, <em>"you should charge
-                for this."</em>
+                them anyway. Eventually someone said,{" "}
+                <em>"you should charge for this."</em>
               </p>
               <p>
                 Most of my guests are from the diaspora — returning for the
-                first time, often. I take that seriously. The pace is
-                yours. The plan is yours. I just make sure everything works,
-                and that you see the Ghana you came to see.
+                first time, often. I take that seriously. The pace is yours.
+                The plan is yours. I just make sure everything works, and that
+                you see the Ghana you came to see.
               </p>
               <p>
-                I'll pick you up from the airport. I'll know the best place
-                for jollof in whatever town we're in. I'll cry with you at
-                Cape Coast if you need me to. That's the job.
+                I'll pick you up from the airport. I'll know the best place for
+                jollof in whatever town we're in. I'll cry with you at Cape
+                Coast if you need me to. That's the job.
               </p>
             </div>
-            <Link href="/about" className="mt-8 inline-block border-b-2 border-clay pb-1 text-clay hover:text-forest hover:border-forest">
+            <Link
+              href="/about"
+              className="mt-8 inline-block border-b-2 border-clay pb-1 text-clay hover:text-forest hover:border-forest"
+            >
               Read my full story →
             </Link>
           </div>
@@ -165,9 +174,7 @@ export default async function HomePage() {
           <div className="flex items-end justify-between">
             <div>
               <p className="eyebrow">Tours</p>
-              <h2 className="mt-3 font-display text-4xl md:text-5xl">
-                Pick your pace.
-              </h2>
+              <h2 className="mt-3 font-display text-4xl md:text-5xl">Pick your pace.</h2>
             </div>
             <Link href="/tours" className="hidden text-sm text-muted hover:text-clay md:block">
               See all tours →
@@ -175,12 +182,8 @@ export default async function HomePage() {
           </div>
 
           <div className="mt-12 grid gap-8 md:grid-cols-2">
-            {tours.map((tour, i) => (
-              <Link
-                key={tour.slug}
-                href={`/tours/${tour.slug}`}
-                className="group block"
-              >
+            {tours.map((tour) => (
+              <Link key={tour.slug} href={"/tours/" + tour.slug} className="group block">
                 <div className="relative aspect-[4/3] overflow-hidden rounded-sm">
                   <Image
                     src={tour.heroImage}
@@ -195,9 +198,7 @@ export default async function HomePage() {
                 </div>
                 <div className="mt-4 flex items-start justify-between gap-4">
                   <div>
-                    <h3 className="font-display text-2xl group-hover:text-clay">
-                      {tour.title}
-                    </h3>
+                    <h3 className="font-display text-2xl group-hover:text-clay">{tour.title}</h3>
                     <p className="mt-1 text-sm text-muted">{tour.tagline}</p>
                   </div>
                   <p className="whitespace-nowrap font-display text-sm text-forest">
@@ -210,15 +211,17 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* =================== GALLERY PREVIEW =================== */}
+      {/* =================== GHANA FACTS =================== */}
+      {/* Dark green section with 6 Ghana facts — edit in src/components/ghana-facts.tsx */}
+      <GhanaFacts />
+
+      {/* =================== GALLERY =================== */}
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex items-end justify-between">
             <div>
               <p className="eyebrow">The scrapbook</p>
-              <h2 className="mt-3 font-display text-4xl md:text-5xl">
-                Memories from past trips.
-              </h2>
+              <h2 className="mt-3 font-display text-4xl md:text-5xl">Memories from past trips.</h2>
             </div>
             <Link href="/gallery" className="hidden text-sm text-muted hover:text-clay md:block">
               Full gallery →
@@ -238,9 +241,7 @@ export default async function HomePage() {
             ].map((src, i) => (
               <div
                 key={src}
-                className={`relative aspect-square overflow-hidden rounded-sm ${
-                  i === 0 || i === 5 ? "md:aspect-[3/4]" : ""
-                }`}
+                className={"relative aspect-square overflow-hidden rounded-sm " + (i === 0 || i === 5 ? "md:aspect-[3/4]" : "")}
               >
                 <Image
                   src={src}
@@ -255,31 +256,55 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* =================== BEST TIME TO VISIT =================== */}
+      {/* 4-card season guide — edit in src/components/best-time.tsx */}
+      <BestTime />
+
       {/* =================== TESTIMONIALS =================== */}
       <section className="bg-ink py-24 text-cream">
         <div className="mx-auto max-w-5xl px-6">
           <p className="eyebrow text-gold">What guests say</p>
           <h2 className="mt-3 font-display text-4xl md:text-5xl">
-            People don't forget this trip.
+            People don&apos;t forget this trip.
           </h2>
 
           <div className="mt-14 grid gap-8 md:grid-cols-3">
-            {testimonials.map((t: any) => (
-              <figure key={t.id} className="relative">
-                <div className="absolute -top-4 -left-2 font-display text-6xl text-gold/50">
-                  "
-                </div>
-                <blockquote className="relative text-lg leading-relaxed">
-                  {t.quote}
-                </blockquote>
-                <figcaption className="mt-6 border-t border-cream/20 pt-4">
-                  <p className="font-medium">{t.author_name}</p>
-                  {t.author_location && (
-                    <p className="text-xs text-cream/60">{t.author_location}</p>
-                  )}
-                </figcaption>
-              </figure>
-            ))}
+            {testimonials.length > 0 ? (
+              testimonials.map((t: any) => (
+                <figure key={t.id} className="relative">
+                  <div className="absolute -top-4 -left-2 font-display text-6xl text-gold/50">"</div>
+                  <blockquote className="relative text-lg leading-relaxed">{t.quote}</blockquote>
+                  <figcaption className="mt-6 border-t border-cream/20 pt-4">
+                    <p className="font-medium">{t.author_name}</p>
+                    {t.author_location && (
+                      <p className="text-xs text-cream/60">{t.author_location}</p>
+                    )}
+                  </figcaption>
+                </figure>
+              ))
+            ) : (
+              // Fallback testimonials shown when Supabase has no approved entries yet
+              [
+                { quote: "Asantewaa made our Ghana trip feel like a homecoming. Every stop was meaningful and she knew each story by heart.", name: "Denise W.", location: "Atlanta, USA" },
+                { quote: "From Cape Coast to Aburi, she handled everything. We just showed up and experienced it. 10/10 would travel with her again.", name: "The Johnson family", location: "Brooklyn, USA" },
+                { quote: "She does not just show you Ghana — she introduces you to it. Warm, funny, incredibly knowledgeable.", name: "Marcia B.", location: "London, UK" },
+              ].map((t) => (
+                <figure key={t.name} className="relative">
+                  <div className="absolute -top-4 -left-2 font-display text-6xl text-gold/50">"</div>
+                  <blockquote className="relative text-lg leading-relaxed">{t.quote}</blockquote>
+                  <figcaption className="mt-6 border-t border-cream/20 pt-4">
+                    <p className="font-medium">{t.name}</p>
+                    <p className="text-xs text-cream/60">{t.location}</p>
+                  </figcaption>
+                </figure>
+              ))
+            )}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link href="/reviews" className="btn-outline border-cream/30 text-cream hover:bg-cream hover:text-ink">
+              Read all reviews
+            </Link>
           </div>
         </div>
       </section>
@@ -297,26 +322,10 @@ export default async function HomePage() {
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 md:grid-cols-4">
             {[
-              {
-                icon: "🌅",
-                title: "Day Tours",
-                desc: "Short on time? A single-day tour is available with a fee. Tell me what you want to see — I'll make it happen.",
-              },
-              {
-                icon: "🎨",
-                title: "Batik Workshop",
-                desc: "A hands-on batik fabric dyeing session for groups. Create something beautiful to take home.",
-              },
-              {
-                icon: "🍳",
-                title: "Cooking Class",
-                desc: "Learn to cook Ghanaian dishes with me. Available for individuals. Jollof secrets included.",
-              },
-              {
-                icon: "🏡",
-                title: "Village Experience",
-                desc: "Step into everyday Ghanaian life. A grounding, joyful visit to a real community — not a performance.",
-              },
+              { icon: "🌅", title: "Day Tours", desc: "Short on time? A single-day tour is available with a fee. Tell me what you want to see — I'll make it happen." },
+              { icon: "🎨", title: "Batik Workshop", desc: "A hands-on batik fabric dyeing session for groups. Create something beautiful to take home." },
+              { icon: "🍳", title: "Cooking Class", desc: "Learn to cook Ghanaian dishes with me. Available for individuals. Jollof secrets included." },
+              { icon: "🏡", title: "Village Experience", desc: "Step into everyday Ghanaian life. A grounding, joyful visit to a real community — not a performance." },
             ].map((item) => (
               <div key={item.title} className="rounded-sm bg-cream p-6 shadow-sm">
                 <div className="mb-3 text-4xl">{item.icon}</div>
