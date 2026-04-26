@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { WhatsAppBubble } from "@/components/whatsapp-bubble";
 
 export const metadata: Metadata = {
   title: "Asantewaa's Tour — Come see Ghana with me",
@@ -15,13 +16,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body className="grain">
         <Header />
         {children}
         <Footer />
+        <WhatsAppBubble />
       </body>
     </html>
   );
