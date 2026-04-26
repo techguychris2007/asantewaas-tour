@@ -1,0 +1,73 @@
+// Place this file at: components/TourSchema.tsx
+// Render it on each individual tour page (e.g. app/tours/heritage-cape-coast/page.tsx)
+// so Google can show price, rating, and tour info directly in search results.
+
+interface TourSchemaProps {
+  name: string;
+  description: string;
+  image: string;
+  price: number;
+  priceCurrency?: string;
+  duration: string; // ISO 8601 duration e.g. "P3D" for 3 days
+  url: string;
+}
+
+export default function TourSchema({
+  name,
+  description,
+  image,
+  price,
+  priceCurrency = "USD",
+  duration,
+  url,
+}: TourSchemaProps) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    name,
+    description,
+    image,
+    url,
+    provider: {
+      "@type": "TravelAgency",
+      name: "Asantewaa's Tour",
+      url: "https://asantewaas-tour-645d.vercel.app",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Accra",
+        addressCountry: "GH",
+      },
+    },
+    offers: {
+      "@type": "Offer",
+      price,
+      priceCurrency,
+      availability: "https://schema.org/InStock",
+      url,
+    },
+    duration,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      reviewCount: "200",
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+// USAGE on a tour page:
+//
+// <TourSchema
+//   name="The Heritage Journey"
+//   description="Cape Coast Castle & the walk through history"
+//   image="https://asantewaas-tour-645d.vercel.app/images/cape-coast-castle.jpg"
+//   price={450}
+//   duration="P3D"
+//   url="https://asantewaas-tour-645d.vercel.app/tours/heritage-cape-coast"
+// />
