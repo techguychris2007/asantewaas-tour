@@ -1,7 +1,7 @@
 // src/app/watch/page.tsx
 export const metadata = {
-  title: "Watch — Asantewaa's Tour",
-  description: "Watch real footage from Asantewaa's tours across Ghana — Cape Coast, Wli Falls, Accra street food and more.",
+  title: "Watch - Asantewaa's Tour",
+  description: "Watch real footage from Asantewaa's tours across Ghana. Cape Coast, Wli Falls, Accra street food and more.",
 };
 
 const videos = [
@@ -12,18 +12,18 @@ const videos = [
   },
   {
     id: "REPLACE_WITH_VIDEO_ID_2",
-    title: "Cape Coast Castle — a journey through history",
+    title: "Cape Coast Castle - a journey through history",
     description: "Walking the grounds of Cape Coast Castle with guests from the diaspora.",
   },
   {
     id: "REPLACE_WITH_VIDEO_ID_3",
     title: "Wli Waterfalls hike",
-    description: "The trail, the falls, and the swim — Ghana's greatest natural wonder.",
+    description: "The trail, the falls, and the swim. Ghana's greatest natural wonder.",
   },
   {
     id: "REPLACE_WITH_VIDEO_ID_4",
     title: "Accra street food tour",
-    description: "Kelewele, waakye, jollof — eating our way through the capital.",
+    description: "Kelewele, waakye, jollof. Eating our way through the capital.",
   },
   {
     id: "REPLACE_WITH_VIDEO_ID_5",
@@ -49,11 +49,10 @@ export default function WatchPage() {
         Ghana on <span className="italic text-clay">screen</span>.
       </h1>
       <p className="mt-6 max-w-2xl text-lg text-muted reveal reveal-3">
-        Real footage from real tours. Watch before you book — see exactly what
+        Real footage from real tours. Watch before you book and see exactly what
         travelling with Asantewaa looks and feels like.
       </p>
 
-      {/* Featured video */}
       {featured && (
         <div className="mt-14 reveal reveal-4">
           <div
@@ -75,7 +74,6 @@ export default function WatchPage() {
         </div>
       )}
 
-      {/* Video grid */}
       <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {rest.map((video) => (
           <div key={video.id}>
@@ -99,7 +97,6 @@ export default function WatchPage() {
         ))}
       </div>
 
-      {/* Subscribe CTA */}
       <div className="mt-20 rounded-sm bg-clay/10 border border-clay/20 px-8 py-10 text-center">
         <p className="font-display text-2xl">Want more Ghana?</p>
         <p className="mt-2 text-muted">

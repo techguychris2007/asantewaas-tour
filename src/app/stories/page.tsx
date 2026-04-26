@@ -2,15 +2,15 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Stories — Asantewaa's Tour",
-  description: "Travel stories, destination guides and Ghana insights from Asantewaa — written for people who want to go deeper.",
+  title: "Stories - Asantewaa's Tour",
+  description: "Travel stories, destination guides and Ghana insights from Asantewaa. Written for people who want to go deeper.",
 };
 
 const stories = [
   {
     slug: "cape-coast-castle-what-nobody-tells-you",
     category: "History",
-    title: "Cape Coast Castle — what nobody tells you before you go",
+    title: "Cape Coast Castle - what nobody tells you before you go",
     excerpt:
       "Every diaspora traveller puts Cape Coast on their list. Almost none of them are prepared for what it actually feels like to stand inside the Door of No Return. Here is what I tell my guests before we walk through those gates.",
     readTime: "6 min read",
@@ -28,16 +28,16 @@ const stories = [
   {
     slug: "wli-waterfalls-the-complete-guide",
     category: "Nature",
-    title: "Wli Waterfalls — the complete guide to Ghana's greatest hike",
+    title: "Wli Waterfalls - the complete guide to Ghana's greatest hike",
     excerpt:
-      "Ghana's highest waterfall sits at the end of a two-hour trail through forest so dense you forget what sky looks like. I have done this hike over forty times. Here is everything you need to know — the trail, the season, the swim at the end.",
+      "Ghana's highest waterfall sits at the end of a two-hour trail through forest so dense you forget what sky looks like. I have done this hike over forty times. Here is everything you need to know.",
     readTime: "8 min read",
     date: "February 2025",
   },
   {
     slug: "kumasi-beyond-the-market",
     category: "Culture",
-    title: "Kumasi beyond the market — the Ashanti capital most visitors miss",
+    title: "Kumasi beyond the market - the Ashanti capital most visitors miss",
     excerpt:
       "Everyone comes to Kumasi for Kejetia market. Almost no one visits the kente weavers of Bonwire, the sword bearers of the Manhyia Palace, or the wood carvers along the Oforikrom road. The real Kumasi is waiting just beyond the obvious.",
     readTime: "7 min read",
@@ -46,7 +46,7 @@ const stories = [
   {
     slug: "year-of-return-five-years-on",
     category: "Diaspora",
-    title: "Year of Return, five years on — what changed and what didn't",
+    title: "Year of Return, five years on - what changed and what didn't",
     excerpt:
       "In 2019 Ghana invited the African diaspora home. Hundreds of thousands came. I was guiding through all of it. Five years later I want to talk honestly about what that moment meant, what it delivered, and what we are still waiting for.",
     readTime: "9 min read",
@@ -55,7 +55,7 @@ const stories = [
   {
     slug: "how-to-plan-your-first-ghana-trip",
     category: "Planning",
-    title: "How to plan your first Ghana trip — the honest guide",
+    title: "How to plan your first Ghana trip - the honest guide",
     excerpt:
       "Not the version that tells you everything is easy and the weather is perfect. The real version: when to come, how long to stay, what will shock you, what will move you, and why you should hire a guide who actually knows the country.",
     readTime: "10 min read",
@@ -86,7 +86,6 @@ export default function StoriesPage() {
         leading tours across this country. Written for people who want to go deeper.
       </p>
 
-      {/* Featured story */}
       {featured && (
         <div className="mt-14 reveal reveal-4 border-b border-ink/10 pb-14">
           <span className={"eyebrow " + (categoryColors[featured.category] ?? "text-clay")}>
@@ -115,7 +114,6 @@ export default function StoriesPage() {
         </div>
       )}
 
-      {/* Stories grid */}
       <div className="mt-14 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
         {rest.map((story) => (
           <article key={story.slug} className="group">
@@ -137,7 +135,6 @@ export default function StoriesPage() {
         ))}
       </div>
 
-      {/* CTA */}
       <div className="mt-20 rounded-sm bg-clay/10 border border-clay/20 px-8 py-10 text-center">
         <p className="font-display text-2xl">These stories are better lived in person.</p>
         <p className="mt-2 text-muted">
