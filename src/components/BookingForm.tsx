@@ -1,14 +1,16 @@
-// src/components/booking-form.tsx
 "use client";
 
 import { useState, useEffect } from "react";
 import type { Tour } from "@/lib/tours";
 
-// ✏️ Replace with your hCaptcha site key from https://dashboard.hcaptcha.com
-const HCAPTCHA_SITE_KEY = "10000000-ffff-ffff-ffff-000000000001"; // test key — replace before going live
+const HCAPTCHA_SITE_KEY = "10000000-ffff-ffff-ffff-000000000001"; // replace before going live
 
 declare global {
-  interface Window { hcaptcha: any; }
+  interface Window {
+    hcaptcha: any;
+    onCaptchaSuccess: (token: string) => void;
+    onCaptchaExpired: () => void;
+  }
 }
 
 export function BookingForm({ tours, initialTour }: { tours: Tour[]; initialTour?: string }) {
@@ -22,6 +24,10 @@ export function BookingForm({ tours, initialTour }: { tours: Tour[]; initialTour
   const [paymentMode, setPaymentMode] = useState(false);
 
   useEffect(() => {
+    // Register global callbacks hCaptcha can call
+    window.onCaptchaSuccess = (token: string) => setCaptchaToken(token);
+    window.onCaptchaExpired = () => setCaptchaToken("");
+
     // Load hCaptcha script
     if (!document.getElementById("hcaptcha-script")) {
       const s = document.createElement("script");
@@ -30,6 +36,11 @@ export function BookingForm({ tours, initialTour }: { tours: Tour[]; initialTour
       s.async = true;
       document.head.appendChild(s);
     }
+
+    return () => {
+      delete (window as any).onCaptchaSuccess;
+      delete (window as any).onCaptchaExpired;
+    };
   }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -60,14 +71,13 @@ export function BookingForm({ tours, initialTour }: { tours: Tour[]; initialTour
 
     if (res.ok) {
       if (paymentMode) {
-        // Initialize Paystack payment
         const payRes = await fetch("/api/payment", {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
             email: payload.email,
             full_name: payload.full_name,
-            amount_usd: 50, // deposit amount
+            amount_usd: 50,
             tour_title: tours.find(t => t.slug === payload.tour_slug)?.title ?? "Tour",
           }),
         });
@@ -141,19 +151,13 @@ export function BookingForm({ tours, initialTour }: { tours: Tour[]; initialTour
         <textarea name="message" rows={4} placeholder="Accessibility needs, dietary preferences, things you want to see…" className="input resize-none" />
       </div>
 
-      {/* hCaptcha widget */}
+      {/* hCaptcha widget — uses named global callbacks */}
       <div className="md:col-span-2">
         <div
           className="h-captcha"
           data-sitekey={HCAPTCHA_SITE_KEY}
-          data-callback={(token: string) => setCaptchaToken(token)}
-          data-expired-callback={() => setCaptchaToken("")}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `document.querySelector('.h-captcha').setAttribute('data-callback','setCaptchaToken');
-            window.setCaptchaToken = function(t){ document.dispatchEvent(new CustomEvent('captcha',{detail:t})); }`,
-          }}
+          data-callback="onCaptchaSuccess"
+          data-expired-callback="onCaptchaExpired"
         />
       </div>
 
