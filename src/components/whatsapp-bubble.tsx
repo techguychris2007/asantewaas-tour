@@ -3,7 +3,7 @@
 // Format: country code + number, no spaces, no +
 // Example: if number is 0241234567, use 233241234567
 
-const WHATSAPP_NUMBER = "233XXXXXXXXX";
+const WHATSAPP_NUMBER = "233243954716";
 const WHATSAPP_MESSAGE = "Hello Asantewaa! I'm interested in booking a tour of Ghana.";
 
 export function WhatsAppBubble() {
