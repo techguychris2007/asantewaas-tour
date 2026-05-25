@@ -15,6 +15,10 @@ export const metadata: Metadata = {
     description: "Come see Ghana with me.",
     images: ["/images/group-flag.jpg"],
   },
+  icons: {
+    icon: "/images/logo.jpg",
+    apple: "/images/logo.jpg",
+  },
 };
 
 export default function RootLayout({
