@@ -1,1 +1,110 @@
-<!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="content-security-policy" content="default-src &#39;none&#39;; script-src &#39;nonce-iYK8XA7Uib2ZMj4QzhKBQw&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-src-attr &#39;none&#39;; style-src &#39;unsafe-inline&#39;; img-src &#39;self&#39; https://challenges.cloudflare.com; connect-src &#39;self&#39; https://challenges.cloudflare.com; frame-src &#39;self&#39; https://challenges.cloudflare.com blob:; child-src &#39;self&#39; https://challenges.cloudflare.com blob:; worker-src blob:; form-action http: https:; base-uri &#39;self&#39;"><style>*{box-sizing:border-box;margin:0;padding:0}html{line-height:1.15;-webkit-text-size-adjust:100%;color:#313131;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}body{display:flex;flex-direction:column;height:100vh;min-height:100vh}.main-content{margin:8rem auto;padding-left:1.5rem;max-width:60rem}@media (width <= 720px){.main-content{margin-top:4rem}}#challenge-error-text{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0ibm9uZSI+PHBhdGggZmlsbD0iI0IyMEYwMyIgZD0iTTE2IDNhMTMgMTMgMCAxIDAgMTMgMTNBMTMuMDE1IDEzLjAxNSAwIDAgMCAxNiAzbTAgMjRhMTEgMTEgMCAxIDEgMTEtMTEgMTEuMDEgMTEuMDEgMCAwIDEtMTEgMTEiLz48cGF0aCBmaWxsPSIjQjIwRjAzIiBkPSJNMTcuMDM4IDE4LjYxNUgxNC44N0wxNC41NjMgOS41aDIuNzgzem0tMS4wODQgMS40MjdxLjY2IDAgMS4wNTcuMzg4LjQwNy4zODkuNDA3Ljk5NCAwIC41OTYtLjQwNy45ODQtLjM5Ny4zOS0xLjA1Ny4zODktLjY1IDAtMS4wNTYtLjM4OS0uMzk4LS4zODktLjM5OC0uOTg0IDAtLjU5Ny4zOTgtLjk4NS40MDYtLjM5NyAxLjA1Ni0uMzk3Ii8+PC9zdmc+");background-repeat:no-repeat;background-size:contain;padding-left:34px}</style><meta http-equiv="refresh" content="360"></head><body><div class="main-wrapper" role="main"><div class="main-content"><noscript><div class="h2"><span id="challenge-error-text">Enable JavaScript and cookies to continue</span></div></noscript></div></div><script nonce="iYK8XA7Uib2ZMj4QzhKBQw">(function(){window._cf_chl_opt = {cFPWv: 'b',cH: 'ITYFMeQp2MDgAzIa.7Szy8epyNSccIukDWjFLenXs3Y-1779731924-1.2.1.1-56CB8QYfum3iutg7ZfsHmgapuWvzA.RMG4CmkIE4LsfSnDRe6p17XbvoIR4vd7jM',cITimeS: '1779731924',cN: 'iYK8XA7Uib2ZMj4QzhKBQw',cRay: 'a0166e133822ee0a',cTplB: '0',cTplC:0,cTplO:0,cTplV:5,cType: 'managed',cUPMDTk:"/?__cf_chl_tk=26AzJCd2liMGJjLO0OesD7KP..CvCRlGtLo_91_NLoc-1779731924-1.0.1.1-kWyHTPuK9NaUmr5lIIRom7iAeT_M8UifiFtAb1v_ECM",cvId: '3',cZone: 'claude.ai',fa:"/?__cf_chl_f_tk=26AzJCd2liMGJjLO0OesD7KP..CvCRlGtLo_91_NLoc-1779731924-1.0.1.1-kWyHTPuK9NaUmr5lIIRom7iAeT_M8UifiFtAb1v_ECM",md: 'bKE_4aY5NYkkpzRttbpr.W0FuOZ7J5GI9zCqWWoCGt8-1779731924-1.2.1.1-uMGHTtbEQsqT5gZqjPFZe12gQWAyPIyrpKcG2JOW3SFwtlWBw6EeDct5ugsg34qj4Mw2o76oq.gZQfM8XA7PLqHFGCdlaE1NsIOY4xnpL1aclASpjVHz88.uPmy8PLdIL5LykrwLtfU19atkBFxg6ypMOgejNIgPu4xJ47BRwfOtbYbV0lwPcDWCTQ1v27i2TNNJ7jToqamNwwJ_EJGxQM516xziBs1NpxikIclMqnFWnM4mbxj0iGV.MZhJ1NLoL1w4_aMOC.a6rhjb9jY8twE_d.fYiJLF2WegQ8jo5oKLV9Fci1YJchWqiBtlMViJJ1oDQizjfm3JhsAMrO9Iv7Rm_4lbGs97MeD_7b2sX6xRGui6RU80wPjQzWbElD1cMqQ1SX6cLu3idrxqMLh8lgH6QkRyEauK9cbqdRRXG8yXg7G6FSM0qmQHf7MIewDeEoGoNsJhD3dzFJOW5u96CldMZSntZZDNzNQSlHpiHrE9jJNoXNxYbWwtDPxHCuv_aOEf50cVOwlwQyPNpWYShUi4OQEN.jBMyp2wN8GEvEHISAHGaW2x6bfMbo9PuFP15HdWbsCZaIgfhc3tq2ZXB2KgF0uF7g9c9_jnPhBl7YZGIjtlHcaTumJAArhOKPMzuWhPz0y_R1YVRdtLaEWWLYGMT0qaTbBTHgKHVzjeCKW02JCbmIE0YyA3uc4Ib3Om310hgbF.fvqs5dyZwil7Ih7C1qCdlGgAxQqfyhIqLaIqVE9HRfzhOimEzm9jZ6jS_FALX9KCNZ6TWQ.y.f7Eg_oygpL_wnwjqUbGC.JupDlwdJy3m42QzCo3asJ.Yw2PJ9KVCmCmMP5PoDg_3Ecyr8So1mQGW2VQQ5BNOtFtOqnesJDJdhlcmc2Lw4XAlA2GuOxs2fL_8RUDNHPdj9xctB7o9RUvYgWti4Q1GWd.Dm7B5ptp60MPzi3M6Q8tau5PQykkRILGHMSzBFrQ7fQ72zoe3o_tBiPsqadGJkhkDkJs8T11LvrzDFWo4kt8kqTOPVCA63QyO9TTYcpCbmFATWBvKRD5tjUKOuiQaU9lcL0',mdrd: 'CPbryaTSRnDrED.q5VB9O7UjPd7HLbu3QPVmzzZNuGQ-1779731924-1.2.1.1-RBvVHSxrtCT4uW3qO81u2lQ499VrCUZaPBo4RUKzJgmpWKz4nH9fsjHCDMZUid6u3KsCbrAFG_6R_5Q4gUF.da5RnraQ8zk2KewDCx_27JXOAZZbm6rPrq8Le3Qx6KO_n0_fWbz7xbOayUw86dZgADrbUaRlP4iQtQBqcxHBaPgLG0V4PXnL0Fz8NE8._YmQJUAT9pwnmA3xXNS9EKBfulsS2mqFj4BzRVPBbWP2P1I',};var a = document.createElement('script');a.nonce = 'iYK8XA7Uib2ZMj4QzhKBQw';a.src = '/cdn-cgi/challenge-platform/h/b/orchestrate/chl_page/v1?ray=a0166e133822ee0a';window._cf_chl_opt.cOgUHash = location.hash === '' && location.href.indexOf('#') !== -1 ? '#' : location.hash;window._cf_chl_opt.cOgUQuery = location.search === '' && location.href.slice(0, location.href.length - window._cf_chl_opt.cOgUHash.length).indexOf('?') !== -1 ? '?' : location.search;if (window.history && window.history.replaceState) {var ogU = location.pathname + window._cf_chl_opt.cOgUQuery + window._cf_chl_opt.cOgUHash;history.replaceState(null, null,"/?__cf_chl_rt_tk=26AzJCd2liMGJjLO0OesD7KP..CvCRlGtLo_91_NLoc-1779731924-1.0.1.1-kWyHTPuK9NaUmr5lIIRom7iAeT_M8UifiFtAb1v_ECM"+ window._cf_chl_opt.cOgUHash);a.onload = function() {history.replaceState(null, null, ogU);}}document.getElementsByTagName('head')[0].appendChild(a);}());</script></body></html>
+"use client";
+
+import { useState } from "react";
+import type { Tour } from "@/lib/tours";
+
+export function BookingForm({ tours, initialTour }: { tours: Tour[]; initialTour?: string }) {
+  const [state, setState] = useState<
+    | { kind: "idle" }
+    | { kind: "pending" }
+    | { kind: "success" }
+    | { kind: "error"; message: string }
+  >({ kind: "idle" });
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setState({ kind: "pending" });
+    const fd = new FormData(e.currentTarget);
+    const payload = {
+      full_name: fd.get("full_name") as string,
+      email: fd.get("email") as string,
+      phone: fd.get("phone") || undefined,
+      country: fd.get("country") || undefined,
+      tour_slug: fd.get("tour_slug") as string,
+      preferred_date: fd.get("preferred_date") || undefined,
+      group_size: Number(fd.get("group_size")),
+      message: fd.get("message") || undefined,
+    };
+
+    const res = await fetch("/api/bookings", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    if (res.ok) {
+      setState({ kind: "success" });
+    } else {
+      const d = await res.json().catch(() => ({}));
+      setState({ kind: "error", message: d.error ?? "Something went wrong." });
+    }
+  }
+
+  if (state.kind === "success") {
+    return (
+      <div className="rounded-sm bg-forest p-12 text-center text-cream">
+        <p className="font-hand text-4xl text-gold">Akwaaba! 🌿</p>
+        <h2 className="mt-4 font-display text-3xl">Your booking request arrived.</h2>
+        <p className="mt-4 text-cream/80">
+          I'll be in touch within 24 hours with dates, a full quote, and next steps.
+          Check your email (and spam folder, just in case).
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={onSubmit} className="grid gap-6 md:grid-cols-2">
+      <div className="md:col-span-2">
+        <label className="label">Which tour are you interested in?</label>
+        <select name="tour_slug" required defaultValue={initialTour ?? ""} className="input appearance-none cursor-pointer">
+          <option value="" disabled>Pick a tour…</option>
+          {tours.map((t) => (
+            <option key={t.slug} value={t.slug}>{t.title} ({t.duration})</option>
+          ))}
+          <option value="custom">I want something custom</option>
+        </select>
+      </div>
+
+      <div>
+        <label className="label">Full name</label>
+        <input name="full_name" required className="input" />
+      </div>
+      <div>
+        <label className="label">Email</label>
+        <input name="email" type="email" required className="input" />
+      </div>
+      <div>
+        <label className="label">Phone (with country code)</label>
+        <input name="phone" placeholder="+1 555 123 4567" className="input" />
+      </div>
+      <div>
+        <label className="label">Country you'll travel from</label>
+        <input name="country" placeholder="USA" className="input" />
+      </div>
+      <div>
+        <label className="label">Preferred start date</label>
+        <input name="preferred_date" type="date" className="input" />
+      </div>
+      <div>
+        <label className="label">Group size</label>
+        <input name="group_size" type="number" min={1} max={50} defaultValue={2} required className="input" />
+      </div>
+      <div className="md:col-span-2">
+        <label className="label">Anything else I should know?</label>
+        <textarea name="message" rows={4} placeholder="Accessibility needs, dietary preferences, things you want to see…" className="input resize-none" />
+      </div>
+
+
+      {state.kind === "error" && (
+        <p className="md:col-span-2 text-sm text-clay">{state.message}</p>
+      )}
+
+      <div className="md:col-span-2 mt-4 flex items-center justify-between gap-4">
+        <p className="text-xs text-muted">By submitting, you agree to be contacted about your trip. No spam, ever.</p>
+        <button type="submit" disabled={state.kind === "pending"} className="btn-clay">
+          {state.kind === "pending" ? "Sending…" : "Send booking request"}
+        </button>
+      </div>
+    </form>
+  );
+}
