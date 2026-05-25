@@ -1,17 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import type { Tour } from "@/lib/tours";
-
-const HCAPTCHA_SITE_KEY = "10000000-ffff-ffff-ffff-000000000001"; // replace before going live
-
-declare global {
-  interface Window {
-    hcaptcha: any;
-    onCaptchaSuccess: (token: string) => void;
-    onCaptchaExpired: () => void;
-  }
-}
 
 export function BookingForm({ tours, initialTour }: { tours: Tour[]; initialTour?: string }) {
   const [state, setState] = useState<
@@ -20,35 +10,10 @@ export function BookingForm({ tours, initialTour }: { tours: Tour[]; initialTour
     | { kind: "success" }
     | { kind: "error"; message: string }
   >({ kind: "idle" });
-  const [captchaToken, setCaptchaToken] = useState("");
   const [paymentMode, setPaymentMode] = useState(false);
-
-  useEffect(() => {
-    // Register global callbacks hCaptcha can call
-    window.onCaptchaSuccess = (token: string) => setCaptchaToken(token);
-    window.onCaptchaExpired = () => setCaptchaToken("");
-
-    // Load hCaptcha script
-    if (!document.getElementById("hcaptcha-script")) {
-      const s = document.createElement("script");
-      s.id = "hcaptcha-script";
-      s.src = "https://js.hcaptcha.com/1/api.js";
-      s.async = true;
-      document.head.appendChild(s);
-    }
-
-    return () => {
-      delete (window as any).onCaptchaSuccess;
-      delete (window as any).onCaptchaExpired;
-    };
-  }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!captchaToken) {
-      setState({ kind: "error", message: "Please complete the CAPTCHA before submitting." });
-      return;
-    }
     setState({ kind: "pending" });
     const fd = new FormData(e.currentTarget);
     const payload = {
@@ -60,7 +25,6 @@ export function BookingForm({ tours, initialTour }: { tours: Tour[]; initialTour
       preferred_date: fd.get("preferred_date") || undefined,
       group_size: Number(fd.get("group_size")),
       message: fd.get("message") || undefined,
-      captcha_token: captchaToken,
     };
 
     const res = await fetch("/api/bookings", {
@@ -91,8 +55,6 @@ export function BookingForm({ tours, initialTour }: { tours: Tour[]; initialTour
     } else {
       const d = await res.json().catch(() => ({}));
       setState({ kind: "error", message: d.error ?? "Something went wrong." });
-      window.hcaptcha?.reset();
-      setCaptchaToken("");
     }
   }
 
@@ -149,16 +111,6 @@ export function BookingForm({ tours, initialTour }: { tours: Tour[]; initialTour
       <div className="md:col-span-2">
         <label className="label">Anything else I should know?</label>
         <textarea name="message" rows={4} placeholder="Accessibility needs, dietary preferences, things you want to see…" className="input resize-none" />
-      </div>
-
-      {/* hCaptcha widget — uses named global callbacks */}
-      <div className="md:col-span-2">
-        <div
-          className="h-captcha"
-          data-sitekey={HCAPTCHA_SITE_KEY}
-          data-callback="onCaptchaSuccess"
-          data-expired-callback="onCaptchaExpired"
-        />
       </div>
 
       {/* Payment toggle */}
