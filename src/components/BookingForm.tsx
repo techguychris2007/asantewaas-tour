@@ -10,6 +10,7 @@ export function BookingForm({ tours, initialTour }: { tours: Tour[]; initialTour
     | { kind: "success" }
     | { kind: "error"; message: string }
   >({ kind: "idle" });
+
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setState({ kind: "pending" });
@@ -93,7 +94,6 @@ export function BookingForm({ tours, initialTour }: { tours: Tour[]; initialTour
         <label className="label">Anything else I should know?</label>
         <textarea name="message" rows={4} placeholder="Accessibility needs, dietary preferences, things you want to see…" className="input resize-none" />
       </div>
-
 
       {state.kind === "error" && (
         <p className="md:col-span-2 text-sm text-clay">{state.message}</p>
