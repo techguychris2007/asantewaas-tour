@@ -18,6 +18,7 @@ const youtubeShorts = [
 ];
 
 const instagramPosts = [
+  // Original posts
   { id: "C-_LBInyu7n", caption: "Tour memory" },
   { id: "C4tRn2mttj0", caption: "Ghana vibes" },
   { id: "C0Wyw43N3_W", caption: "On the road" },
@@ -25,6 +26,25 @@ const instagramPosts = [
   { id: "CzGwFAoN3ie", caption: "Tour life" },
   { id: "CwfBALwNAAT", caption: "Ghana beauty" },
   { id: "CwkwXIBKZQq", caption: "Real footage" },
+  // New posts
+  { id: "CujEli2gtR_", caption: "Tour memory" },
+  { id: "CvN0DxJtibe", caption: "Ghana vibes" },
+  { id: "C1wdlqjtEAo", caption: "On the road" },
+  { id: "C19XYXstrSK", caption: "Ghana moments" },
+  { id: "C7TtMmbNQU_", caption: "Tour life" },
+  { id: "C8aOEq2tIfg", caption: "Ghana beauty" },
+  { id: "C8aPI1ot-Yp", caption: "Real footage" },
+  { id: "C8fa6tyNMid", caption: "Tour memory" },
+  { id: "C9Mtz5rNV3p", caption: "Ghana vibes" },
+  { id: "C9bzh6OtcA_", caption: "On the road" },
+  { id: "C_iGR-8N9mh", caption: "Ghana moments" },
+  { id: "C_GOvdJiu6e", caption: "Tour life" },
+  { id: "C_oVyswtHW9", caption: "Ghana beauty" },
+  { id: "DAaod58tuhe", caption: "Real footage" },
+  { id: "DC8jIm3tdK3", caption: "Tour memory" },
+  { id: "DJkTLKYtwWn", caption: "Ghana vibes" },
+  { id: "DM55DSKMzQu", caption: "On the road" },
+  { id: "DNL_U7bsjMe", caption: "Ghana moments" },
 ];
 
 const [featuredShort, ...restShorts] = youtubeShorts;
