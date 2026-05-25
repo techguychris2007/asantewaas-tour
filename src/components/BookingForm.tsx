@@ -10,8 +10,6 @@ export function BookingForm({ tours, initialTour }: { tours: Tour[]; initialTour
     | { kind: "success" }
     | { kind: "error"; message: string }
   >({ kind: "idle" });
-  const [paymentMode, setPaymentMode] = useState(false);
-
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setState({ kind: "pending" });
@@ -34,23 +32,6 @@ export function BookingForm({ tours, initialTour }: { tours: Tour[]; initialTour
     });
 
     if (res.ok) {
-      if (paymentMode) {
-        const payRes = await fetch("/api/payment", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({
-            email: payload.email,
-            full_name: payload.full_name,
-            amount_usd: 50,
-            tour_title: tours.find(t => t.slug === payload.tour_slug)?.title ?? "Tour",
-          }),
-        });
-        if (payRes.ok) {
-          const { authorization_url } = await payRes.json();
-          window.location.href = authorization_url;
-          return;
-        }
-      }
       setState({ kind: "success" });
     } else {
       const d = await res.json().catch(() => ({}));
@@ -113,20 +94,6 @@ export function BookingForm({ tours, initialTour }: { tours: Tour[]; initialTour
         <textarea name="message" rows={4} placeholder="Accessibility needs, dietary preferences, things you want to see…" className="input resize-none" />
       </div>
 
-      {/* Payment toggle */}
-      <div className="md:col-span-2 flex items-center gap-3 rounded-sm border border-ink/10 bg-bone p-4">
-        <input
-          type="checkbox"
-          id="pay-deposit"
-          checked={paymentMode}
-          onChange={e => setPaymentMode(e.target.checked)}
-          className="h-4 w-4 cursor-pointer accent-forest"
-        />
-        <label htmlFor="pay-deposit" className="cursor-pointer text-sm">
-          <span className="font-medium">Pay $50 deposit now</span>
-          <span className="ml-2 text-muted">— secure your spot (card, MoMo, bank transfer)</span>
-        </label>
-      </div>
 
       {state.kind === "error" && (
         <p className="md:col-span-2 text-sm text-clay">{state.message}</p>
@@ -135,7 +102,7 @@ export function BookingForm({ tours, initialTour }: { tours: Tour[]; initialTour
       <div className="md:col-span-2 mt-4 flex items-center justify-between gap-4">
         <p className="text-xs text-muted">By submitting, you agree to be contacted about your trip. No spam, ever.</p>
         <button type="submit" disabled={state.kind === "pending"} className="btn-clay">
-          {state.kind === "pending" ? "Sending…" : paymentMode ? "Book & pay deposit →" : "Send booking request"}
+          {state.kind === "pending" ? "Sending…" : "Send booking request"}
         </button>
       </div>
     </form>
