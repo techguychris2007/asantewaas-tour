@@ -16,8 +16,8 @@ export const metadata: Metadata = {
     images: ["/images/group-flag.jpg"],
   },
   icons: {
-    icon: "/images/logo.jpg",
-    apple: "/images/logo.jpg",
+    icon: "/images/logo.png",
+    apple: "/images/logo.png",
   },
 };
 
