@@ -15,7 +15,6 @@ const photos = [
   { src: "/images/kwame-nkrumah-memorial.jpg", caption: "At the Nkrumah Memorial" },
   { src: "/images/drumming-1.jpg", caption: "Drum circle session" },
   { src: "/images/drumming-2.jpg", caption: "Finding the rhythm" },
-  { src: "/images/group-mountains.jpg", caption: "Overlooking the Volta Region" },
   { src: "/images/afadja-mountain.jpg", caption: "Summit day — Mount Afadja" },
   { src: "/images/group-rocks.jpg", caption: "Climbing together" },
   { src: "/images/plane-wreck.jpg", caption: "The hidden plane wreck at Aburi" },

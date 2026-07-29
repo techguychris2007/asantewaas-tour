@@ -65,7 +65,6 @@ export const tours: Tour[] = [
       "/images/aburi-gardens.jpg",
       "/images/shai-hills.jpg",
       "/images/afadja-mountain.jpg",
-      "/images/group-mountains.jpg",
     ],
     highlights: [
       "Aburi Botanical Gardens — the famous palm avenue",

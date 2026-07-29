@@ -46,7 +46,11 @@ export async function POST(req: NextRequest) {
   });
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.error("Bookings insert error:", error);
+    return NextResponse.json(
+      { error: "Something went wrong saving your booking. Please try again or WhatsApp me directly." },
+      { status: 500 }
+    );
   }
 
   sendBookingNotification({

@@ -11,13 +11,18 @@ import { BestTime } from "@/components/best-time";
 export const revalidate = 60;
 
 async function getTestimonials() {
-  const { data } = await supabase
-    .from("testimonials")
-    .select("*")
-    .eq("approved", true)
-    .order("created_at", { ascending: false })
-    .limit(6);
-  return data ?? [];
+  try {
+    const { data, error } = await supabase
+      .from("testimonials")
+      .select("*")
+      .eq("approved", true)
+      .order("created_at", { ascending: false })
+      .limit(6);
+    if (error) throw error;
+    return data ?? [];
+  } catch {
+    return [];
+  }
 }
 
 export default async function HomePage() {
