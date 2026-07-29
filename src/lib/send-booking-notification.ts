@@ -11,9 +11,12 @@ export async function sendBookingNotification(data: {
   const apiKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.RESEND_TO_EMAIL;
 
-  if (!apiKey || !toEmail) return;
+  if (!apiKey || !toEmail) {
+    console.error("Booking notification skipped: RESEND_API_KEY or RESEND_TO_EMAIL not set");
+    return;
+  }
 
-  await fetch("https://api.resend.com/emails", {
+  const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${apiKey}`,
@@ -39,4 +42,8 @@ export async function sendBookingNotification(data: {
       `,
     }),
   });
+
+  if (!res.ok) {
+    console.error("Booking notification failed:", res.status, await res.text().catch(() => ""));
+  }
 }
