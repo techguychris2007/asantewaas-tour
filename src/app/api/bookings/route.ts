@@ -1,6 +1,21 @@
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 import { Resend } from "resend";
+import { supabase } from "@/lib/supabase";
+import { getTour } from "@/lib/tours";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+const schema = z.object({
+  full_name: z.string().min(2).max(120),
+  email: z.string().email(),
+  phone: z.string().max(40).optional(),
+  country: z.string().max(80).optional(),
+  tour_slug: z.string().min(1),
+  preferred_date: z.string().optional(),
+  group_size: z.number().int().min(1).max(100),
+  message: z.string().max(2000).optional(),
+});
 
 interface BookingNotificationData {
   full_name: string;
@@ -13,7 +28,8 @@ interface BookingNotificationData {
   message?: string;
 }
 
-export async function sendBookingNotification(data: BookingNotificationData) {
+// Internal helper function (NO 'export' keyword here so Next.js build passes)
+async function sendBookingNotification(data: BookingNotificationData) {
   const adminEmail = process.env.ADMIN_EMAIL || "info@asantewaas-tour.org";
 
   const emailHtml = `
@@ -92,7 +108,7 @@ export async function sendBookingNotification(data: BookingNotificationData) {
 
   // 1. Send Admin Alert Email
   await resend.emails.send({
-    from: "Asantewaa Tours <info@asantewaas-tour.org>", // Must match your authenticated domain
+    from: "Asantewaa Tours <info@asantewaas-tour.org>",
     to: [adminEmail],
     subject: `New Booking Request: ${data.tour_title} 🌿`,
     html: emailHtml,
@@ -113,4 +129,56 @@ export async function sendBookingNotification(data: BookingNotificationData) {
       </div>
     `,
   });
+}
+
+export async function POST(req: NextRequest) {
+  const body = await req.json().catch(() => null);
+  const parsed = schema.safeParse(body);
+
+  if (!parsed.success) {
+    return NextResponse.json(
+      { error: parsed.error.issues[0].message },
+      { status: 400 }
+    );
+  }
+
+  const tour = getTour(parsed.data.tour_slug);
+  if (!tour && parsed.data.tour_slug !== "custom") {
+    return NextResponse.json({ error: "Unknown tour" }, { status: 400 });
+  }
+
+  const tourTitle = tour?.title ?? "Custom tour";
+
+  const { error } = await supabase.from("bookings").insert({
+    full_name: parsed.data.full_name,
+    email: parsed.data.email,
+    phone: parsed.data.phone,
+    country: parsed.data.country,
+    tour_slug: parsed.data.tour_slug,
+    tour_title: tourTitle,
+    preferred_date: parsed.data.preferred_date || null,
+    group_size: parsed.data.group_size,
+    message: parsed.data.message,
+  });
+
+  if (error) {
+    console.error("Bookings insert error:", error);
+    return NextResponse.json(
+      { error: "Something went wrong saving your booking. Please try again or WhatsApp me directly." },
+      { status: 500 }
+    );
+  }
+
+  sendBookingNotification({
+    full_name: parsed.data.full_name,
+    email: parsed.data.email,
+    phone: parsed.data.phone,
+    country: parsed.data.country,
+    tour_title: tourTitle,
+    preferred_date: parsed.data.preferred_date,
+    group_size: parsed.data.group_size,
+    message: parsed.data.message,
+  }).catch((err) => console.error("Email notification error:", err));
+
+  return NextResponse.json({ ok: true });
 }
